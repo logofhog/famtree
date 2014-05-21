@@ -1,4 +1,4 @@
 class Person < ActiveRecord::Base
   belongs_to :family
-  has_many :relations, :foreign_key => 'relative'
+  has_many :relationships, :foreign_key => 'person'
 end
