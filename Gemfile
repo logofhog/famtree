@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise'
 
 group :development, :test do
+  gem 'spork-rails'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
 end
