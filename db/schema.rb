@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140521142944) do
+ActiveRecord::Schema.define(version: 20140522020236) do
 
   create_table "families", force: true do |t|
     t.string   "family_name"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password"
   end
 
   create_table "people", force: true do |t|

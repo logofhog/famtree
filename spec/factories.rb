@@ -11,11 +11,4 @@ FactoryGirl.define do
 end
 
 
-FactoryGirl.define do
-  factory :family do
-    family_name "smiths"
-    description "this is the smith family"
-  end
-end
-
 
