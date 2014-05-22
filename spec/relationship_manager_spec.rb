@@ -25,15 +25,24 @@ describe RelationshipManager do
     p4 = Person.create(:first_name => 'joe')
     RelationshipManager.new(p1, p2, 'Brother')
     RelationshipManager.new(p1, p3, 'Sister')
-    RelationshipManager.new(p1, p4, 'Sister')
+    RelationshipManager.new(p4, p1, 'Sister')
     RelationshipManager.relatives(p1).size.should == 3
   end
+  
+  context 'invalid relationships' do
+    before do
+      @p1 = Person.create(:first_name => 'alan')
+      @p2 = Person.create(:first_name => 'ryan')
+    end
+    it 'should not create the same relationship twice' do
+      RelationshipManager.new(@p1, @p2, 'Brother')
+      expect {RelationshipManager.new(@p1, @p2, 'Brother')}.to raise_error
+    end
 
-  it 'should not create the same relationship twice' do
-    p1 = Person.create(:first_name => 'alan')
-    p2 = Person.create(:first_name => 'ryan')
-    RelationshipManager.new(p1, p2, 'Brother')
-    expect {RelationshipManager.new(p1, p2, 'Brother')}.to raise_error
+    it 'should not create same relationship in reverse' do
+      RelationshipManager.new(@p1, @p2, 'Brother')
+      expect {RelationshipManager.new(@p2, @p1, 'Brother')}.to raise_error
+    end
   end
 
 end

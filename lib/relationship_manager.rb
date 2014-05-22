@@ -11,16 +11,23 @@ class RelationshipManager
   end
 
   def make_relation
-    rels = Relationship.where(:person=>@first_person).where(:relative=>@second_person).first
-    if !rels
-      rel = Relationship.create(:person => @first_person, :relative => @second_person, :rel_type => @relationship_type)
+    rels = Relationship.where(:person=>@first_person).
+                        where(:relative=>@second_person)
+    rels += Relationship.where(:person=>@second_person).
+                         where(:relative => @first_person)
+
+    if rels.size == 0
+      rel = Relationship.create(:person => @first_person, 
+                                :relative => @second_person, 
+                                :rel_type => @relationship_type)
     else
       raise MakeRelationError
     end
   end
 
   def self.relatives(person)
-    person.relationships
+    Relationship.where(:person => person) +
+    Relationship.where(:relative => person)
   end
 
 end
