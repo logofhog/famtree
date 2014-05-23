@@ -17,4 +17,5 @@ class Family < ActiveRecord::Base
     fam = Family.where(:family_name => family_name).
                  where(:password => pwd)
   end
+
 end

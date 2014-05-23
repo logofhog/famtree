@@ -1,5 +1,6 @@
-require_relative '../lib/relationship_manager.rb'
+require_relative "../lib/relationship_manager.rb"
 require 'spec_helper'
+
 describe RelationshipManager do
   before do
     @person = create :person
