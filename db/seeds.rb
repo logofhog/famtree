@@ -2,8 +2,8 @@ class WholeFamilyMaker
   def initialize
     patriarch = Person.create(:first_name => 'fred', :last_name => 'jones',
                          :birthday=> '01/01/1920')
-    family = Family.create(:family_name => 'jones', :new_password => 'password')
-    patriarch.update_attribute(:family_id, family)
+    @family = Family.create(:family_name => 'jones', :new_password => 'password')
+    patriarch.update_attribute(:family_id, @family.id)
     @son_or_daughter = 'Son'
     @generation = 1
     add_children(patriarch)
@@ -23,8 +23,10 @@ class WholeFamilyMaker
       son_or_daughter_toggle
       child = Person.create(:first_name => "person#{@son_or_daughter}#{rand(100)}",
                     :last_name => 'jones')
+      child.update_attribute(:family_id, @family.id)
       Relationship.create(:person => parent, :relative => child,
                           :rel_type => @son_or_daughter)
+
       if @generation < 4
         add_children(child)
       end
