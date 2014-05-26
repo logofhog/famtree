@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :person do
-    first_name 'fred'
+    first_name 'factfred'
     middle_name 'walter'
     last_name 'rooms'
     email 'example@example.com'

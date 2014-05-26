@@ -10,7 +10,4 @@ class FamilyBuilder
     person = Person.where(:family_id => family.id).last
   end
 
-  def get_parent(person)
-  end
-
 end

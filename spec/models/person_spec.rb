@@ -3,7 +3,7 @@
 describe Person do
   it 'should create a person' do
     person = FactoryGirl.create :person
-    person.first_name.should == 'fred'
+    person.first_name.should == 'factfred'
   end
 
   it 'should add user to a family' do
