@@ -34,16 +34,20 @@ describe RelationshipManager do
     before do
       @p1 = Person.create(:first_name => 'alan')
       @p2 = Person.create(:first_name => 'ryan')
+      RelationshipManager.new(@p1, @p2, 'Parent')
     end
     it 'should not create the same relationship twice' do
-      RelationshipManager.new(@p1, @p2, 'Parent')
       expect {RelationshipManager.new(@p1, @p2, 'Parent')}.to raise_error
     end
 
     it 'should not create same relationship in reverse' do
-      RelationshipManager.new(@p1, @p2, 'Parent')
       expect {RelationshipManager.new(@p2, @p1, 'Child')}.to raise_error
     end
+
+    it 'should return parent' do
+      RelationshipManager.get_parents(@p1).should == @p2
+    end
+
   end
 
 end

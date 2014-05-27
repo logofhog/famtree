@@ -11,8 +11,10 @@ class RelationshipManager
   end
 
   def self.get_parents(person)
-    rel = Relationship.where(:person => person).where(:rel_type => 'Parent')
-    rel.first.relative
+    rel = Relationship.where(:person => person).where(:rel_type => 'Parent').first
+    if rel
+      rel.relative
+    end
   end
 
   def make_relation
@@ -21,12 +23,11 @@ class RelationshipManager
     if rels.size == 0
       rel = Relationship.create(:person => @first_person, 
                                 :relative => @second_person, 
-                                :rel_type => @relationship_type)
-      
+                                :rel_type => inverse_relationship(@relationship_type))
 
       rel = Relationship.create(:person => @second_person, 
                                 :relative => @first_person, 
-                                :rel_type => inverse_relationship(@relationship_type))
+                                :rel_type => @relationship_type)
     else
       raise MakeRelationError
     end

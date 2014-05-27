@@ -4,20 +4,28 @@ require_relative '../lib/relationship_manager.rb'
 
 describe FamilyBuilder do
   it 'should return head of family' do
-    # checks against seed data, fred is head of family
+    # checks against seed data, gramps is head of family
     family = Family.first
   end
 
-  it 'should return parents' do
-    person = FactoryGirl.create :person
-    relative = Person.create(:first_name => 'suzy')
-    relation = RelationshipManager.new(person, relative, 'Child')
-    RelationshipManager.get_parents(relative).should == person
+  context 'people have parents' do
+    before do
+      @person = FactoryGirl.create :person
+      @relative = Person.create(:first_name => 'suzy')
+    end
+
+    it 'should return parents' do
+      relation = RelationshipManager.new(@person, @relative, 'Child')
+      RelationshipManager.get_parents(@person).should == @relative
+    end
   end
 
   it 'should return head of family' do
+    person = Person.all.first
+    FamilyBuilder.head_of_family(person).first_name.should == 'gramps'
+    person2 = FactoryGirl.create :person
+    FamilyBuilder.head_of_family(person2).first_name.should_not == 'gramps'
   end
-
 end
 
 
