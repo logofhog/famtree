@@ -45,7 +45,7 @@ describe RelationshipManager do
     end
 
     it 'should return parent' do
-      RelationshipManager.get_parents(@p1).should == @p2
+      RelationshipManager.get_parents(@p2).should == @p1
     end
 
   end
