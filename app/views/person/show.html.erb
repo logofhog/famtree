@@ -1,2 +1,13 @@
 <h1>Person#show</h1>
-<p>Find me in app/views/person/show.html.erb</p>
+
+<div class = 'person'>
+  <%= @person.name %></br>
+  email: <%= @person.email%></br>
+  Birthday: <%= @person.birthday %></br>
+</div>
+
+<% @relatives.each do |r| %>
+  <%= r.rel_type %> of 
+  <%= r.relative.name %>
+  </br>
+<% end %>

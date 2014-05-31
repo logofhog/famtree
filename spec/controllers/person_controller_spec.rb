@@ -11,7 +11,7 @@ describe PersonController do
 
   describe "GET 'show'" do
     it "returns http success" do
-      get 'show'
+      get 'show', {:id => '1'}
       response.should be_success
     end
   end
@@ -25,28 +25,28 @@ describe PersonController do
 
   describe "GET 'create'" do
     it "returns http success" do
-      get 'create'
+      get 'create', {:id => '1'}
       response.should be_success
     end
   end
 
   describe "GET 'edit'" do
     it "returns http success" do
-      get 'edit'
+      get 'edit', {:id => '1'}
       response.should be_success
     end
   end
 
   describe "GET 'update'" do
     it "returns http success" do
-      get 'update'
+      get 'update', {:id => '1'}
       response.should be_success
     end
   end
 
   describe "GET 'destroy'" do
     it "returns http success" do
-      get 'destroy'
+      get 'destroy', {:id => '1'}
       response.should be_success
     end
   end

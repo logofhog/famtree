@@ -1,5 +1,7 @@
 Famtree::Application.routes.draw do
-  resources :person
+  resources :person, :as => 'people'
+  resources :relationship, :as => 'relationships'
+
 
   root :to => 'person#index'
   devise_for :users
