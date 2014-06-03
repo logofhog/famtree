@@ -3,7 +3,6 @@ require_relative '../lib/family_builder.rb'
 require_relative '../lib/relationship_manager.rb'
 
 describe FamilyBuilder do
-    # checks against seed data, gramps is head of family
 
   context 'people have parents' do
     before do
@@ -27,8 +26,6 @@ describe FamilyBuilder do
 
     it 'should return head of family' do
       FamilyBuilder.head_of_family(@person4).first_name.should == 'suzy'
-    #  person2 = FactoryGirl.create :person
-    #  FamilyBuilder.head_of_family(person2).first_name.should_not == 'gramps'
     end
   end
 end
