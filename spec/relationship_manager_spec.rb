@@ -40,10 +40,6 @@ describe RelationshipManager do
       expect {RelationshipManager.new(@p1, @p2, 'Parent')}.to raise_error
     end
 
-    it 'should not create same relationship in reverse' do
-      expect {RelationshipManager.new(@p2, @p1, 'Child')}.to raise_error
-    end
-
     it 'should return parent' do
       RelationshipManager.get_parents(@p2).should == @p1
     end

@@ -2,6 +2,7 @@ require 'digest/sha1'
 
 class Family < ActiveRecord::Base
   has_many :people
+  has_many :users
 
   attr_accessor :new_password
 

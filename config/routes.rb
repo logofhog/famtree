@@ -1,9 +1,9 @@
 Famtree::Application.routes.draw do
-  resources :person, :as => 'people'
-  resources :relationship, :as => 'relationships'
+  resources :people
+  resources :relationships
 
 
-  root :to => 'person#index'
+  root :to => 'people#index'
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
