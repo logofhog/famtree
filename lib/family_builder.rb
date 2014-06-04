@@ -6,6 +6,16 @@ class FamilyBuilder
     @family = family
   end
 
+  def self.join_family(user, family_name, password)
+    family_to_join = Family.authenticate(family_name, password)
+    if family_to_join
+      user.update_attribute(:family, family_to_join)
+      true
+    else
+      false
+    end
+  end
+
   def self.head_of_family(person)
     has_parents = true
     while has_parents

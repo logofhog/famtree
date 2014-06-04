@@ -7,6 +7,8 @@ class RelationshipManager
       @second_person = second_person
       @relationship_type = rel
       make_relation
+    else
+      raise MakeRelationError.new('invalid relationship type')
     end
   end
 
@@ -29,7 +31,7 @@ class RelationshipManager
                                 :relative => @first_person, 
                                 :rel_type => @relationship_type)
     else
-      raise MakeRelationError
+      raise MakeRelationError.new('Relationship already exists!')
     end
   end
 
