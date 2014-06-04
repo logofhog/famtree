@@ -1,0 +1,15 @@
+<h1>Relationship#new</h1>
+new relationship for
+<%= @person.name %>
+<%= form_for(@relationship, url: {action: 'create'}) do |f| %>
+  <div class = 'field'>
+  <%= f.hidden_field :person %>
+</div>
+  <div class = 'field'>
+    <%= f.select(:relative, @rel_choices.map{ |r| [r.name, r.id]}, :include_blank => true) %> is the
+  <%= f.select(:rel_type, ['', 'Child', 'Parent', 'Spouse']) %> of <%= @person.name %>
+</div>
+<div class = 'actions'>
+  <%= f.submit 'Save Relationship' %>
+</div>
+<% end %>

@@ -1,0 +1,14 @@
+<h1>Join Family</h1>
+<%= form_for @family, :url => {:action => :joined } do |f| %>
+  <div class = 'field'>
+    <%= f.label :family_name %>
+    <%= f.text_field :family_name %>
+  </div>
+  <div class = 'field'>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div class='actions'>
+    <%= f.submit "Join Family" %>
+  </div>
+<% end %>

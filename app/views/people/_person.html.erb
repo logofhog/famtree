@@ -1,0 +1,11 @@
+<% @people.each do |person| %>
+<li>
+  <%= person.first_name %>
+  <%= person.last_name %>
+  <%= link_to "#{person.first_name}", person%>
+  <%= link_to "edit", edit_person_url(person) %>
+  <%= person.birthday %>
+  <%= link_to "new relationship", new_relationship_url(:id => person.id) %>
+</li>
+<% end %>
+</li>
