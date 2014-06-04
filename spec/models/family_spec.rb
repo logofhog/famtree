@@ -27,12 +27,12 @@ describe Family do
 
     it 'should return family with name/password' do
       family_to_get = Family.authenticate(@family.family_name, 'hello')
-      family_to_get.first.family_name.should == 'smith'
+      family_to_get.family_name.should == 'smith'
     end
 
     it 'should not return family with invalid password' do
       family_to_get = Family.authenticate(@family.family_name, 'dogs')
-      family_to_get.size.should ==0
+      family_to_get.should be_nil
     end
 
   end

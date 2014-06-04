@@ -13,17 +13,11 @@ describe RelationshipManager do
     rel = RelationshipManager.new(person2, person1, 'Parent')
   end
 
-  it 'should not make invalid relationship' do
-    person2 = Person.new(:first_name => 'john')
-    RelationshipManager.new(@person, person2, 'dog')
-  end
-
-
   it 'should return relatives' do
-    p1 = Person.create(:first_name => 'tony')
-    p2 = Person.create(:first_name => 'burt')
-    p3 = Person.create(:first_name => 'mike')
-    p4 = Person.create(:first_name => 'joe')
+    p1 = Person.create(:first_name => 'tony', :last_name => 'jones')
+    p2 = Person.create(:first_name => 'burt', :last_name => 'jones')
+    p3 = Person.create(:first_name => 'mike', :last_name => 'jones')
+    p4 = Person.create(:first_name => 'joe', :last_name => 'jones')
     RelationshipManager.new(p1, p2, 'Child')
     RelationshipManager.new(p1, p3, 'Child')
     RelationshipManager.new(p4, p1, 'Parent')
@@ -32,12 +26,20 @@ describe RelationshipManager do
   
   context 'invalid relationships' do
     before do
-      @p1 = Person.create(:first_name => 'alan')
-      @p2 = Person.create(:first_name => 'ryan')
+      @p1 = Person.create(:first_name => 'alan', :last_name => 'jones')
+      @p2 = Person.create(:first_name => 'ryan', :last_name => 'jones')
       RelationshipManager.new(@p1, @p2, 'Parent')
     end
     it 'should not create the same relationship twice' do
       expect {RelationshipManager.new(@p1, @p2, 'Parent')}.to raise_error
+    end
+
+    it 'should not create invalid relationship type' do
+      expect {RelationshipManager.new(@p1, @p2, 'Parent')}.to raise_error
+    end
+
+    it 'should not created invalid relation type' do
+      expect {RelationshipManager.new(@p1, @p2, 'dog')}.to raise_error
     end
 
     it 'should return parent' do

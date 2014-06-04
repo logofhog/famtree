@@ -11,4 +11,14 @@ FactoryGirl.define do
 end
 
 
+FactoryGirl.define do
+  factory :user do
+    email 'example@example.com'
+    password 'password'
+    family_id '4'
+  end
+end
+
+
+
 

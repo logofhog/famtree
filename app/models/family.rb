@@ -17,6 +17,11 @@ class Family < ActiveRecord::Base
     pwd = Digest::SHA1.hexdigest(password)
     fam = Family.where(:family_name => family_name).
                  where(:password => pwd)
+    if fam
+      fam.first
+    else
+      nil
+    end
   end
 
 end

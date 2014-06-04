@@ -6,13 +6,12 @@ describe FamilyBuilder do
 
   context 'people have parents' do
     before do
-      @relative = Person.create(:first_name => 'suzy')
+      @relative = Person.create(:first_name => 'suzy', :last_name => 'suze')
       @person = FactoryGirl.create :person
       @person1 = FactoryGirl.create :person
       @person2 = FactoryGirl.create :person
       @person3 = FactoryGirl.create :person
       @person4 = FactoryGirl.create :person
-      @person.save
       RelationshipManager.new(@relative, @person1, 'Parent')
       RelationshipManager.new(@person1, @person2, 'Parent')
       RelationshipManager.new(@person2, @person3, 'Parent')
