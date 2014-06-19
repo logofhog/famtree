@@ -7,6 +7,13 @@ class PersonManager
   def spouse
     rel = Relationship.where(:person => @person)
                       .where(:rel_type => 'Spouse')
+      .first
+    puts 'asssssssss', @person,rel, "llllllllllllllllllllllllllllllllll"
+    if rel
+      rel.relative
+    else
+      nil
+    end
   end
 
   def parents

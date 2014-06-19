@@ -5,9 +5,10 @@
       ----
     <% end %>
   <% end %>
-  <%= person[:person].first_name %>
-  <%= person[:person].last_name %>
-  <%= link_to "#{person[:person].first_name}", person[:person]%>
+  <%= link_to "#{person[:person].with_spouse_name}", person[:person]%>
+  <% if person[:person].spouse %>
+    <%= link_to "#{person[:person].spouse.name}", person[:person].spouse%>
+  <% end %>
   <%= link_to "edit", edit_person_url(person[:person]) %>
   <%= person[:person].birthday %>
   <%= link_to "new relationship", new_relationship_url(:id => person[:person].id) %>

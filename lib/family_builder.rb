@@ -23,6 +23,13 @@ class FamilyBuilder
 
   def tree_to_list(placed_people, all_people)
       list = placed_people.map { |p| p[:person] }
+      spouses = []
+      list.each do |p|
+        if p.spouse
+          spouses << p.spouse
+        end
+      end
+      list += spouses
       list = all_people - list
       placed_people += list.map { |p| {:person => p, :generation => 0 }}
   end
