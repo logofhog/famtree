@@ -5,15 +5,17 @@ describe RelationshipsController do
 
   include Devise::TestHelpers
   before do
-    user = double('user')
-    request.env['warden'].stub :authenticate! => user
-    controller.stub :current_user => user
     @person = FactoryGirl.create :person
+    @family = FactoryGirl.create :family
+    @user = FactoryGirl.create(:user, :family_id => @family.id)
+    @family = FactoryGirl.create :family
+    @person.family_id = @family.id
+    sign_in @user
   end
 
   describe "GET 'new'" do
     it "returns http success" do
-      get 'new'
+      get 'new', {:id => @user.id }
       response.should be_success
     end
   end

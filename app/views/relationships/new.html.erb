@@ -6,8 +6,9 @@ new relationship for
   <%= f.hidden_field :person %>
 </div>
   <div class = 'field'>
-    <%= f.select(:relative, @rel_choices.map{ |r| [r.name, r.id]}, :include_blank => true) %> is the
-  <%= f.select(:rel_type, ['', 'Child', 'Parent', 'Spouse']) %> of <%= @person.name %>
+    <%= @person.name %> is the
+    <%= f.select(:rel_type, ['', 'Child', 'Parent', 'Spouse']) %> of
+    <%= f.select(:relative, @rel_choices.map{ |r| [r.name, r.id]}, :include_blank => true) %>
 </div>
 <div class = 'actions'>
   <%= f.submit 'Save Relationship' %>

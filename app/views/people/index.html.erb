@@ -1,6 +1,8 @@
 <h1>Person#index</h1>
 
 <ul class = 'people'>
-  <%= render :partial=> '/people/person' %>
+  <% if @people %>
+    <%= render :partial=> '/people/person' %>
+  <% end %>
 </ul>
 

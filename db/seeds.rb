@@ -16,7 +16,7 @@ class WholeFamilyMaker
       child = Person.create(:first_name => "person#{rand(100)}",
                     :last_name => 'jones')
       child.update_attribute(:family_id, @family.id)
-      RelationshipManager.new(parent, child, 'Child')
+      RelationshipManager.new(parent, child, 'Parent')
 
       if @generation < 4
         add_children(child)

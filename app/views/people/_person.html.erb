@@ -1,11 +1,15 @@
 <% @people.each do |person| %>
 <li>
-  <%= person.first_name %>
-  <%= person.last_name %>
-  <%= link_to "#{person.first_name}", person%>
-  <%= link_to "edit", edit_person_url(person) %>
-  <%= person.birthday %>
-  <%= link_to "new relationship", new_relationship_url(:id => person.id) %>
+  <% (0..person[:generation]).each do |i| %>
+    <% if i>0 %>
+      ----
+    <% end %>
+  <% end %>
+  <%= person[:person].first_name %>
+  <%= person[:person].last_name %>
+  <%= link_to "#{person[:person].first_name}", person[:person]%>
+  <%= link_to "edit", edit_person_url(person[:person]) %>
+  <%= person[:person].birthday %>
+  <%= link_to "new relationship", new_relationship_url(:id => person[:person].id) %>
 </li>
 <% end %>
-</li>

@@ -2,11 +2,10 @@ Famtree::Application.routes.draw do
   resources :people
   resources :relationships
   resources :families, :only => [:new, :create, :edit, :update]
-
-  root :to => 'people#index'
-
   match '/family/join',   to: 'families#join',   via: 'get'
   match '/family/joined',   to: 'families#joined',   via: 'post'
+
+  root :to => 'people#index'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

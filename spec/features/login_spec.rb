@@ -12,7 +12,7 @@ describe "sign in process", :type => :feature do
       fill_in 'user_password', :with => 'password'
     end
     click_button 'Sign in'
-    expect(page).to have_content 'Signed in successfully.'
+    expect(page).to have_content 'Person#index'
   end
 end
 

@@ -9,5 +9,11 @@
 <% @relatives.each do |r| %>
   <%= r.rel_type %> of 
   <%= r.relative.name %>
+  <%= r.id %>
+  <%= link_to "delete", r, :controller => :relationships_controller,
+                           :method => :delete,
+                           :data => {:confirm => 'delete this relationship?'}
+  %>
+                                           
   </br>
 <% end %>
