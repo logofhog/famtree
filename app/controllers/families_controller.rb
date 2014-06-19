@@ -23,9 +23,8 @@ class FamiliesController < ApplicationController
   end
 
   def joined
-    if FamilyBuilder.join_family(current_user,
-                              params[:family][:family_name], 
-                              params[:family][:password])
+    if current_user.join_family(params[:family][:family_name], 
+                                params[:family][:password])
       redirect_to root_path, :flash => {:success => 'You joined the family!'}
     else
       redirect_to family_join_path, :flash => {:error => 'That family/password combination is invalid'}

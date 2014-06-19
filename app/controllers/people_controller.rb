@@ -5,7 +5,11 @@ class PeopleController < ApplicationController
   
   def index
     @title = 'Your Family'
-    @people= Person.by_user(current_user)
+    if current_user.family
+      @people = FamilyBuilder.new(current_user.family).tree
+    else
+      flash.notice = 'please make or join a family'
+    end
   end
 
   def show
@@ -19,6 +23,7 @@ class PeopleController < ApplicationController
   end
 
   def create
+    params[:person][:family_id] = current_user.family_id
     @person = Person.new(person_params)
     if @person.save
       redirect_to root_path, :flash => {:success => 'Created new person'}
@@ -45,6 +50,6 @@ class PeopleController < ApplicationController
 
   def person_params
     params.require(:person).permit(:first_name, :middle_name, :last_name,
-                                   :email, :birthday)
+                                   :email, :birthday, :family_id)
   end
 end
