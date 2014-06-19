@@ -45,7 +45,11 @@ class RelationshipManager
   end
 
   def self.relatives(person)
-    Relationship.where(:person => person) 
+    rels = Relationship.where(:person => person) 
+    if person.spouse
+      rels += Relationship.where(:person => person.spouse)
+    end
+    rels
   end
 
   def valid_relationship?(relative, rel_type)

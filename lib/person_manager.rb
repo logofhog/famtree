@@ -7,8 +7,7 @@ class PersonManager
   def spouse
     rel = Relationship.where(:person => @person)
                       .where(:rel_type => 'Spouse')
-      .first
-    puts 'asssssssss', @person,rel, "llllllllllllllllllllllllllllllllll"
+                      .first
     if rel
       rel.relative
     else
@@ -19,12 +18,20 @@ class PersonManager
   def parents
     rel = Relationship.where(:person => @person).
                        where(:rel_type => 'Child')
+    if @person && @person.spouse
+      rel += Relationship.where(:person => @person.spouse)
+                         .where(:rel_type => 'Child')
+    end
     relative_mapper(rel)
   end
 
   def children
     rel = Relationship.where(:person => @person).
                        where(:rel_type => 'Parent')
+    if @person && @person.spouse
+      rel += Relationship.where(:person => @person.spouse)
+                         .where(:rel_type => 'Parent')
+    end
     relative_mapper(rel)
   end
 

@@ -5,8 +5,9 @@
       ----
     <% end %>
   <% end %>
-  <%= link_to "#{person[:person].with_spouse_name}", person[:person]%>
+  <%= link_to "#{person[:person].name}", person[:person]%>
   <% if person[:person].spouse %>
+    and
     <%= link_to "#{person[:person].spouse.name}", person[:person].spouse%>
   <% end %>
   <%= link_to "edit", edit_person_url(person[:person]) %>
