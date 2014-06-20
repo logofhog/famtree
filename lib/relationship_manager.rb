@@ -17,7 +17,7 @@ class RelationshipManager
                                 :relative => @first_person, 
                                 :rel_type => inverse_relationship(relationship_type))
     else
-      raise MakeRelationError.new('invalid relationship')
+      return false
     end
   end
 
@@ -83,7 +83,4 @@ class RelationshipManager
       method = 'children'
     end
   end
-end
-
-class MakeRelationError < StandardError
 end

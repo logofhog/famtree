@@ -19,7 +19,12 @@ class RelationshipsController < ApplicationController
     relationship = RelationshipManager.new(person).
                    make_relation(relative, 
                                  params[:relationship][:rel_type])
-    redirect_to root_path, :flash => {:success => 'Relationship created!'}
+    unless relationship
+      redirect_to new_relationship_path({:id =>person.id}),
+                  :flash => {:error => 'Invalid Relationship!'}
+    else
+      redirect_to root_path, :flash => {:success => 'Relationship created!'}
+    end
   end
 
   def destroy

@@ -11,6 +11,8 @@ class FamiliesController < ApplicationController
                            :description=> params[:family][:description],
                            :new_password => params[:family][:password])
       if @family.save
+        current_user.family = @family
+        current_user.save
         redirect_to root_path, :flash => {:success => 'Created new family'}
       end
     else
