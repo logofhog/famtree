@@ -33,27 +33,15 @@ describe RelationshipManager do
       RelationshipManager.new(@p2).make_relation(@p3, 'Parent')
     end
     it 'should not create the same relationship twice' do
-      expect {RelationshipManager.new(@p1, @p2, 'Parent')}.to raise_error
+      expect(RelationshipManager.new(@p1).make_relation(@p2, 'Parent')).to eq(false)
     end
 
     it 'should not create circular relationship' do
-      expect {RelationshipManager.new(@p3).make_relation(@p1, 'Parent')}.to raise_error
+      expect(RelationshipManager.new(@p3).make_relation(@p1, 'Parent')).to eq(false)
     end
 
     it 'should not created invalid relation type' do
-      expect {RelationshipManager.new(@p1).make_relation(@p2, 'dog')}.to raise_error
-    end
-
-    it 'should return parent' do
-      expect(PersonManager.new(@p2).parents).to eq([@p1])
-    end
-
-    it 'should return children' do
-      expect(PersonManager.new(@p1).children.first).to eq(@p2)
-    end
-
-    it 'should return head of family' do
-      expect(PersonManager.new(@p2).furthest_ancestor).to eq([@p1])
+      expect(RelationshipManager.new(@p1).make_relation(@p2, 'dog')).to eq(false)
     end
   end
 end
