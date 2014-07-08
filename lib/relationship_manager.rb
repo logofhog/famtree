@@ -53,14 +53,20 @@ class RelationshipManager
   end
 
   def valid_relationship?(relative, rel_type)
+    if @first_person == relative 
+      return false
+    end
+
+    unless RELATION_TYPES.include?(rel_type) && relative
+      return false
+    end
+
     method = rel_to_method(rel_type, true)
     people_to_check = PersonManager.new(relative).send(method) || []
     valid = true
     not_checked_all = true
-    i = 0
     while not_checked_all
       person = people_to_check[0]
-      i = i+1
       people_to_check += PersonManager.new(person).send(method) || []
       if people_to_check.include? @first_person
         return false
