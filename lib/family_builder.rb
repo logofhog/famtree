@@ -47,5 +47,4 @@ class FamilyBuilder
     end
   end
 
-
 end

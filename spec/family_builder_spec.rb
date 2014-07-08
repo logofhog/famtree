@@ -17,11 +17,11 @@ describe FamilyBuilder do
       @person4 = FactoryGirl.create(:person, :family_id => @family.id)
       @person5 = FactoryGirl.create(:person, :family_id => @family.id)
       @person8 = FactoryGirl.create(:person, :family_id => @family.id)
-      RelationshipManager.new(@head_of_family, @person1, 'Parent')
-      RelationshipManager.new(@head_of_family, @person5, 'Parent')
-      RelationshipManager.new(@person1, @person2, 'Parent')
-      RelationshipManager.new(@person2, @person3, 'Parent')
-      RelationshipManager.new(@person3, @person4, 'Parent')
+      RelationshipManager.new(@head_of_family).make_relation(@person1, 'Parent')
+      RelationshipManager.new(@head_of_family).make_relation(@person5, 'Parent')
+      RelationshipManager.new(@person1).make_relation(@person2, 'Parent')
+      RelationshipManager.new(@person2).make_relation(@person3, 'Parent')
+      RelationshipManager.new(@person3).make_relation(@person4, 'Parent')
     end
 
 
