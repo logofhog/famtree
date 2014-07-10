@@ -4,6 +4,9 @@ class Person < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  validates :email, presence: false, format: {with: VALID_EMAIL_REGEX}
+
 
   scope :by_user, -> (user) {where(:family_id => user.family_id)}
 

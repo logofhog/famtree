@@ -2,8 +2,8 @@ require_relative '../../lib/relationship_manager.rb'
 
 class PeopleController < ApplicationController
   before_action :authenticate_user!
-  before_action :belongs_to_any_family, only: [:new]
-  before_action :belongs_to_correct_family, only: [:show, :create, :edit, :update, :destroy]
+  before_action :belongs_to_any_family, only: [:new, :create]
+  before_action :belongs_to_correct_family, only: [:show, :edit, :update, :destroy]
   
   def index
     @title = 'Your Family'
@@ -29,6 +29,9 @@ class PeopleController < ApplicationController
     @person = Person.new(person_params)
     if @person.save
       redirect_to root_path, :flash => {:success => 'Created new person'}
+    else
+      flash[:alert] = @person.errors.full_messages.join(', ')
+      render 'new'
     end
   end
 
@@ -56,7 +59,7 @@ class PeopleController < ApplicationController
   end
 
   def belongs_to_any_family
-    unless current_user.family
+    unless current_user.family_id
       redirect_to root_path
     end
   end
