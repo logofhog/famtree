@@ -20,7 +20,6 @@ class PeopleController < ApplicationController
   end
 
   def new
-    @title = 'Enter New Person'
     @person = Person.new
   end
 

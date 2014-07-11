@@ -6,6 +6,7 @@ describe PeopleController do
 
   before do
     @user = FactoryGirl.create :user
+    @user.save
     sign_in @user
     @person = FactoryGirl.create :person
   end
@@ -27,14 +28,14 @@ describe PeopleController do
   describe "GET 'new'" do
     it "returns http success" do
       get 'new'
-      response.should be_success
+      expect(page).to render_template(:new)
     end
   end
 
   describe "POST 'create'" do
     it "returns http success" do
       new_person = FactoryGirl.create :person
-      post 'create', {:person => new_person.attributes}
+      post 'create', {:person => new_person.attributes, :id => new_person.id}
       response.should redirect_to('/')
     end
   end
